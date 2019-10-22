@@ -134,6 +134,11 @@ module.exports = class BlurUp extends ThumbnailGenerator {
           };
           this.uppy.setFileMeta(file.id, metadata);
           this.uppy.log(`[BlurUp] Set Blur Up Data for ${file.id}`);
+          this.uppy.emit(
+            'blurup:generated',
+            this.uppy.getFile(file.id),
+            metadata
+          );
         })
         .catch(err => {
           this.uppy.log(
@@ -141,6 +146,7 @@ module.exports = class BlurUp extends ThumbnailGenerator {
             'warning'
           );
           this.uppy.log(err, 'warning');
+          this.uppy.emit('blurup:error', this.uppy.getFile(file.id), err);
         });
     }
     return Promise.resolve();
