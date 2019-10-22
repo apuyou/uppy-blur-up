@@ -1,0 +1,44 @@
+{
+  "name": "uppy-blur-up",
+  "description": "Generate data to create blur up effect when uploading through Uppy.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/uppy-blur-up.cjs.js",
+  "module": "dist/uppy-blur-up.esm.js",
+  "browser": "dist/uppy-blur-up.umd.js",
+  "types": "types/index.d.ts",
+  "keywords": [
+    "file uploader",
+    "uppy",
+    "uppy-plugin",
+    "thumbnail",
+    "resize",
+    "blur-up",
+    "loading"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "homepage": "https://github.com/apuyou/uppy-blur-up",
+  "bugs": {
+    "url": "https://github.com/apuyou/uppy-blur-up/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apuyou/uppy-blur-up.git"
+  },
+  "dependencies": {
+    "@uppy/thumbnail-generator": "^1.4.0",
+    "@uppy/utils": "^1.3.0",
+    "exif-js": "2.3.0"
+  },
+  "peerDependencies": {
+    "@uppy/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^1.25.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
+}
