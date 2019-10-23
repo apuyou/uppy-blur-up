@@ -68,7 +68,7 @@ module.exports = class BlurUp extends ThumbnailGenerator {
         dimensions.height
       );
       return Promise.all([
-        this.imageSize(image),
+        this.imageSize(rotatedImage),
         this.canvasToUrl(resizedImage, 'image/png'),
       ]);
     });
