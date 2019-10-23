@@ -13,6 +13,12 @@ This plugin is not part of Uppy but inherits a lot from [@uppy/thumbnail-generat
 
 It is currently maintained by Arthur Puyou with support from [Fotokorner](https://fotokorner.com).
 
+## Installation
+
+```bash
+$ npm install uppy-blur-up --save
+```
+
 ## Example
 
 ```js
@@ -27,13 +33,12 @@ uppy.on('blurup:generated', (file, data) => {
 });
 ```
 
-## Installation
+To display the image, I recommend the [react-simple-image](https://github.com/bluebill1049/react-simple-img) component with the following props :
 
-```bash
-$ npm install uppy-blur-up --save
-```
-
-We recommend installing from npm and then using a module bundler such as [Webpack](https://webpack.js.org/), [Browserify](http://browserify.org/) or [Rollup.js](http://rollupjs.org/).
+- `src`: path to full size image
+- `width` and `height`: dimensions of original image from generated metadata (`data.width` and `data.height`)
+- `applyAspectRatio`: this will enforce the original aspect ratio on the thumbnail
+- `placeholder`: URL to placeholder from generated metadata (`data.blur`)
 
 ## License
 
