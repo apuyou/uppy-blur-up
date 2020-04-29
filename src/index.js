@@ -1,5 +1,49 @@
 const ThumbnailGenerator = require('@uppy/thumbnail-generator');
 const isPreviewSupported = require('@uppy/utils/lib/isPreviewSupported');
+const exifr = require('exifr/dist/mini.legacy.umd.js')
+
+const ORIENTATIONS = {
+  1: {
+    rotation: 0,
+    xScale: 1,
+    yScale: 1
+  },
+  2: {
+    rotation: 0,
+    xScale: -1,
+    yScale: 1
+  },
+  3: {
+    rotation: 180,
+    xScale: 1,
+    yScale: 1
+  },
+  4: {
+    rotation: 180,
+    xScale: -1,
+    yScale: 1
+  },
+  5: {
+    rotation: 90,
+    xScale: 1,
+    yScale: -1
+  },
+  6: {
+    rotation: 90,
+    xScale: 1,
+    yScale: 1
+  },
+  7: {
+    rotation: 270,
+    xScale: 1,
+    yScale: -1
+  },
+  8: {
+    rotation: 270,
+    xScale: 1,
+    yScale: 1
+  }
+};
 
 /**
  * The Blur Up plugin :)
@@ -52,9 +96,10 @@ module.exports = class BlurUp extends ThumbnailGenerator {
       });
     });
 
-    return Promise.all([onload, this.getOrientation(file)]).then(values => {
-      const image = values[0];
-      const orientation = values[1];
+    const orientationPromise = exifr.orientation(file.data).catch(_err => 1)
+
+    return Promise.all([onload, orientationPromise]).then(([image, rawOrientation]) => {
+      const orientation = ORIENTATIONS[rawOrientation || 1]
       const dimensions = this.getProportionalDimensions(
         image,
         targetWidth,

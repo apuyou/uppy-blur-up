@@ -12,24 +12,19 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.9.3.tgz#6356df2647de9eac569f9a52eda3480fa9e70b4d"
   integrity sha512-01s+ac4qerwd6RHD+mVbOEsraDHSgUaefQlEdBbUolnQFjKwCr7luvAlEwW1RFojh67u0z4OUTjPn9LEl4zIkA==
 
-"@uppy/thumbnail-generator@^1.4.0 <=1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@uppy/thumbnail-generator/-/thumbnail-generator-1.5.5.tgz#1375876af89a167fa884d57119dfa4bf58d8745f"
-  integrity sha512-eCwQ5o7I15KnYpYjxI7kvmvBhJxavlxTTitY2Dz9dqLjGoJguwPYJb7fGHTPG9dgSfEV9qBeLXh4QWRjsZkkEQ==
+"@uppy/thumbnail-generator@^1.5.11":
+  version "1.5.11"
+  resolved "https://registry.yarnpkg.com/@uppy/thumbnail-generator/-/thumbnail-generator-1.5.11.tgz#241ca12f7d8fda26bdc3b0f628196ba8ce796b60"
+  integrity sha512-PUKAwTxeWS/Cny8H30Uhv55/r2e56pQZR4fsCCf68Ej0I02Qsrbez62FXsEL/U+5SN4huy2YhcnehlbW54puHw==
   dependencies:
-    "@uppy/utils" "^2.2.2"
+    "@uppy/utils" "^2.4.3"
+    exifr "^5.0.1"
+    math-log2 "^1.0.1"
 
-"@uppy/utils@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-1.3.0.tgz#46ae1fb646f3ad03d204a43d145e0365557c7eca"
-  integrity sha512-eDmegVxzaKHGCpjA6ok0/vaEN5U9znKjpwnxGBF+mNpydgSHCV5NDA4iy1mmaOQ4D3mwnu51UBk44zt+0KL8pw==
-  dependencies:
-    lodash.throttle "^4.1.1"
-
-"@uppy/utils@^2.2.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-2.4.2.tgz#7c5cf660e46b77a4192662e0329bc8d81d37efc7"
-  integrity sha512-iKe2NR/xRZ2t6TJZHseNlL4DpoXDLilv2nFf3LvAVgrZy/YP7kn/QHyQ5ikW1EdgOzm1IrbvRR29bztwYeWneg==
+"@uppy/utils@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-2.4.3.tgz#1ae03eb2f16c6873c37e7d681a8e29a668444955"
+  integrity sha512-9MKEopdRmr2J+Lb8ZGyQhf5QO8KzCEkLMNQjCT5r+h9sHhSmfwA8QaJzDvaW1d/R/hlxd9LY1OfUTe9H5X99Mw==
   dependencies:
     lodash.throttle "^4.1.1"
 
@@ -38,10 +33,20 @@ acorn@^7.1.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
 
+exifr@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/exifr/-/exifr-5.0.1.tgz#60c57675dc14b827f698da0acbbfd595c7729758"
+  integrity sha512-6Vq+IVvq7oyRSTpEDMDalzupJZs7rauXL0gZeS2yU1BSA+1fAzJCJrfRHXjMMggtUyb/hJ9m9MlLf8AtvEsrUw==
+
 lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
+
+math-log2@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/math-log2/-/math-log2-1.0.1.tgz#fb8941be5f5ebe8979e718e6273b178e58694565"
+  integrity sha1-+4lBvl9evol55xjmJzsXjlhpRWU=
 
 rollup@^1.25.1:
   version "1.32.1"
