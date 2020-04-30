@@ -1,49 +1,6 @@
 const ThumbnailGenerator = require('@uppy/thumbnail-generator');
 const isPreviewSupported = require('@uppy/utils/lib/isPreviewSupported');
-const exifr = require('exifr/dist/mini.legacy.umd.js')
-
-const ORIENTATIONS = {
-  1: {
-    rotation: 0,
-    xScale: 1,
-    yScale: 1
-  },
-  2: {
-    rotation: 0,
-    xScale: -1,
-    yScale: 1
-  },
-  3: {
-    rotation: 180,
-    xScale: 1,
-    yScale: 1
-  },
-  4: {
-    rotation: 180,
-    xScale: -1,
-    yScale: 1
-  },
-  5: {
-    rotation: 90,
-    xScale: 1,
-    yScale: -1
-  },
-  6: {
-    rotation: 90,
-    xScale: 1,
-    yScale: 1
-  },
-  7: {
-    rotation: 270,
-    xScale: 1,
-    yScale: -1
-  },
-  8: {
-    rotation: 270,
-    xScale: 1,
-    yScale: 1
-  }
-};
+const exifr = require('exifr/dist/mini.legacy.umd.js');
 
 /**
  * The Blur Up plugin :)
@@ -90,33 +47,35 @@ module.exports = class BlurUp extends ThumbnailGenerator {
         URL.revokeObjectURL(originalUrl);
         resolve(image);
       });
-      image.addEventListener('error', event => {
+      image.addEventListener('error', (event) => {
         URL.revokeObjectURL(originalUrl);
         reject(event.error || new Error('Could not create thumbnail'));
       });
     });
 
-    const orientationPromise = exifr.orientation(file.data).catch(_err => 1)
+    const orientationPromise = exifr.rotation(file.data).catch((_err) => 1);
 
-    return Promise.all([onload, orientationPromise]).then(([image, rawOrientation]) => {
-      const orientation = ORIENTATIONS[rawOrientation || 1]
-      const dimensions = this.getProportionalDimensions(
-        image,
-        targetWidth,
-        targetHeight,
-        orientation.rotation
-      );
-      const rotatedImage = this.rotateImage(image, orientation);
-      const resizedImage = this.resizeImage(
-        rotatedImage,
-        dimensions.width,
-        dimensions.height
-      );
-      return Promise.all([
-        this.imageSize(rotatedImage),
-        this.canvasToUrl(resizedImage, 'image/png'),
-      ]);
-    });
+    return Promise.all([onload, orientationPromise]).then(
+      ([image, orientation]) => {
+        const dimensions = this.getProportionalDimensions(
+          image,
+          targetWidth,
+          targetHeight,
+          orientation.deg
+        );
+        console.log(orientation);
+        const rotatedImage = this.rotateImage(image, orientation);
+        const resizedImage = this.resizeImage(
+          rotatedImage,
+          dimensions.width,
+          dimensions.height
+        );
+        return Promise.all([
+          this.imageSize(rotatedImage),
+          this.canvasToUrl(resizedImage, 'image/png'),
+        ]);
+      }
+    );
   }
 
   imageSize(image) {
@@ -155,7 +114,7 @@ module.exports = class BlurUp extends ThumbnailGenerator {
     if (this.queue.length > 0) {
       const current = this.queue.shift();
       return this.requestThumbnail(current)
-        .catch(err => {})
+        .catch((err) => {})
         .then(() => this.processQueue());
     } else {
       this.queueProcessing = false;
@@ -171,7 +130,7 @@ module.exports = class BlurUp extends ThumbnailGenerator {
         this.opts.thumbnailWidth,
         this.opts.thumbnailHeight
       )
-        .then(data => {
+        .then((data) => {
           const metadata = {
             width: data[0].width,
             height: data[0].height,
@@ -185,7 +144,7 @@ module.exports = class BlurUp extends ThumbnailGenerator {
             metadata
           );
         })
-        .catch(err => {
+        .catch((err) => {
           this.uppy.log(
             `[BlurUp] Failed setting Blur Up Data for ${file.id}:`,
             'warning'
