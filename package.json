@@ -1,7 +1,7 @@
 {
   "name": "uppy-blur-up",
   "description": "Generate data to create blur up effect when uploading through Uppy.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "dist/uppy-blur-up.cjs.js",
   "module": "dist/uppy-blur-up.esm.js",
